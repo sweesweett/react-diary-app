@@ -1,0 +1,26 @@
+.DiaryList {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.diary {
+  box-sizing: border-box;
+  min-height: 120px;
+  margin: 1px 10px;
+  padding: 10px 20px;
+  border-radius: 12px;
+}
+.diary .editDelete {
+}
+.diary .titleEtc {
+  display: flex;
+  justify-content: space-between;
+}
+.test {
+  content: '';
+  background: url(../SeekPng.com_weather-icon-png_1330512.png);
+  background-position: 20px 40px;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+}

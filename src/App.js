@@ -6,12 +6,14 @@ import React, { useState } from 'react';
 
 function App() {
   const [weather, setWeather] = useState({});
+  const [state, setState] = useState([]);
+
   return (
     <div className='App'>
       <h2>색깔 일기장</h2>
       <WeatherDisplay setWeather={setWeather} weather={weather} />
-      <DiaryToWrite />
-      <DiaryList />
+      <DiaryToWrite state={state} setState={setState} />
+      <DiaryList state={state} setState={setState} />
     </div>
   );
 }

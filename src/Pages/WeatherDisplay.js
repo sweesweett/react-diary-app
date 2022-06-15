@@ -5,7 +5,7 @@ import './WeatherDisplay.css';
 const WeatherDisplay = ({ setWeather, weather }) => {
   useEffect(() => {
     // fetch(
-    //   'http://api.openweathermap.org/data/2.5/weather?id=1835848&lang=kr&appid=f413fbd15cf93aa84ef1964715d0baed'
+    //   'http://api.openweathermap.org/data/2.5/weather?id=1835848&lang=kr&appid='
     // )
     //   .then((res) => res.json())
     //   .then((data) => ({
