@@ -31,10 +31,10 @@ const WeatherDisplay = ({ setWeather, weather }) => {
     <section className='weatherDisplay'>
       <div className='weatherLeft'>
         <div className='currentTemp'>
-          <div className='emoji'>이모지</div>
+          <div className='emoji'></div>
           <div className='temp'>
             <span>{weather.desc}</span>
-            <div>{weather.temp}℃</div>
+            <div className='nowTemp'>{weather.temp}℃</div>
           </div>
         </div>
         <div className='minMaxTemp'>

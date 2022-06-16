@@ -4,42 +4,23 @@
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
     'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR',
     'Malgun Gothic', sans-serif;
+  margin: 0;
+  padding: 0;
 }
-/* .App {
-  text-align: center;
+body {
+  /* background: url('./circle-scatter-haikei (1).svg');
+  background-repeat: no-repeat;
+  background-size: cover; */
+  background-image: radial-gradient(
+    circle,
+    #051937,
+    #171228,
+    #190a1a,
+    #12040d,
+    #000000
+  );
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  width: 600px;
+  margin: 80px auto 10px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */

@@ -7,8 +7,9 @@ const DiaryList = ({ state, setState }) => {
           className='diary'
           key={index}
           style={{
-            boxShadow: `inset 1px 1px 30px ${el.color}45,
-          inset -1px -1px 30px ${el.color}45`,
+            boxShadow: ` 2px 2px 30px ${el.color}1b,
+            -2px -2px 30px ${el.color}1b
+            ,inset 0px -30px 150px 15px ${el.color}20`,
           }}
         >
           <div className='editDelete'>
@@ -18,9 +19,13 @@ const DiaryList = ({ state, setState }) => {
           <div className='titleEtc'>
             <div className='title'>{el.title}</div>
             <div className='diaryEtc'>
-              <span>월.일</span>
-              <span>이모지</span>
-              <div className='test'></div>
+              <span>
+                {el.createdTime.split('. ')[1]}/{el.createdTime.split('. ')[2]}
+              </span>
+              <div
+                className='weatherIcon'
+                style={{ filter: `drop-shadow(0px 2px 3px ${el.color}99)` }}
+              ></div>
             </div>
           </div>
           <div>{el.content}</div>

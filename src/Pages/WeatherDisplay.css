@@ -1,10 +1,35 @@
 .weatherDisplay {
-  border: 1px solid black;
+  position: fixed;
+  box-sizing: border-box;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
   width: 300px;
   height: 200px;
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  border-radius: 12px;
+  background: rgba(89, 90, 128, 0.5);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  /* border: 2px solid #ffffff6b; */
+  border-width: 2px 2px 1px 0.5px;
+  border-style: solid;
+  border-color: #ffffff6b;
+  color: white;
+}
+.weatherDisplay::after {
+  content: '';
+  width: 50%;
+  height: 1px;
+  position: absolute;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0px -30px 100px 15px #00000074;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
 }
 .weatherDisplay .weatherRight {
   display: flex;
@@ -21,18 +46,33 @@
   justify-content: space-between;
 }
 .weatherDisplay .weatherLeft .currentTemp {
+  margin: 3px;
   display: flex;
   align-items: center;
-
+  text-align: center;
   flex: 1 1 60%;
+  border-radius: 12px;
 }
 .weatherDisplay .weatherLeft .currentTemp .emoji {
+  content: '';
+  width: 100px;
+  height: 100px;
+  background: url(../SeekPng.com_weather-icon-png_1330512.png);
+  background-repeat: no-repeat;
+  background-position: -460px 10px;
   flex: 1 1 50%;
+  filter: drop-shadow(5px 1px 2px rgba(16, 8, 255, 0.474));
 }
 .weatherDisplay .weatherLeft .currentTemp .temp {
   flex: 1 1 50%;
 }
-
+.weatherDisplay .weatherLeft .currentTemp .temp > span {
+  font-size: 12px;
+  font-weight: 700;
+}
+.weatherDisplay .weatherLeft .currentTemp .temp .nowTemp {
+  font-size: 25px;
+}
 .weatherDisplay .weatherLeft .minMaxTemp {
   display: flex;
   justify-content: space-between;

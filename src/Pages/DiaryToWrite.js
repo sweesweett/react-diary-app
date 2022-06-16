@@ -4,19 +4,35 @@ const DiaryToWrite = ({ state, setState }) => {
   const title = useRef();
   const content = useRef();
   const color = useRef();
-
   const handleInput = (e) => {
     // console.log(e.target.value);
   };
   const diarySubmit = () => {
-    // if(title.current.value='')
+    if (title.current.value === '' || content.current.vale === '') {
+      alert('일기를 작성해주세요');
+      return;
+    }
+    const createdTime = new Date().toLocaleString();
+    localStorage.setItem(
+      'diaryList',
+      JSON.stringify([
+        {
+          [title.current.name]: title.current.value,
+          [content.current.name]: content.current.value,
+          [color.current.name]: color.current.value,
+          createdTime,
+        },
+        ...state,
+      ])
+    );
     setState([
-      ...state,
       {
         [title.current.name]: title.current.value,
         [content.current.name]: content.current.value,
         [color.current.name]: color.current.value,
+        createdTime,
       },
+      ...state,
     ]);
   };
   return (
