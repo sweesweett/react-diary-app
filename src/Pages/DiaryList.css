@@ -4,7 +4,7 @@
 }
 
 .diary {
-  box-sizing: border-box;
+  overflow: hidden;
   position: relative;
   min-height: 120px;
   margin: 10px;
@@ -50,13 +50,49 @@
 } */
 
 .diary .editDelete {
-  margin: 5px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  margin: 0 5px 5px;
+  text-align: right;
 }
-.diary .titleEtc {
+.diary .editDelete span {
+  margin: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.diary .editDelete span:last-child {
+  margin-right: 0;
+}
+.diary .diaryContent {
   display: flex;
   justify-content: space-between;
+  margin: 5px;
 }
-.weatherIcon {
+.diary .diaryContent .titleContent {
+  flex: 1 1 85%;
+  width: 60%;
+}
+.diary .diaryContent .titleContent h3 {
+  margin-bottom: 5px;
+}
+.diary .diaryContent .titleContent .content {
+  width: 95%;
+  overflow-x: auto;
+}
+.diary .diaryContent .dateNweatherIcon {
+  flex: 1 1 15%;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.diary .diaryContent .dateNweatherIcon .date {
+  text-align: center;
+}
+
+.diary .weatherIcon {
   content: '';
   background: url('../SeekPng.com_weather-icon-png_1330512.png');
   background-position: 3px 0px;

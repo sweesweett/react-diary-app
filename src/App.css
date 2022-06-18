@@ -6,6 +6,7 @@
     'Malgun Gothic', sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
   /* background: url('./circle-scatter-haikei (1).svg');
@@ -22,5 +23,5 @@ body {
 }
 .App {
   width: 600px;
-  margin: 80px auto 10px;
+  margin: 50px auto 10px;
 }

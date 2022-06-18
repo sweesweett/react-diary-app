@@ -1,0 +1,13 @@
+.DiaryToWrite {
+  min-height: 200px;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(111, 106, 106, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  /* border: 2px solid #ffffff6b; */
+  border-width: 2px 2px 1px 0.5px;
+  border-style: solid;
+  border-color: #ffffff6b;
+  color: white;
+}

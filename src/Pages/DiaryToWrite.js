@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import './DiaryToWrite.css';
 
 const DiaryToWrite = ({ state, setState }) => {
   const title = useRef();
@@ -36,7 +37,7 @@ const DiaryToWrite = ({ state, setState }) => {
     ]);
   };
   return (
-    <div className='diaryToWrite'>
+    <div className='DiaryToWrite'>
       <div>
         <input
           type='text'
