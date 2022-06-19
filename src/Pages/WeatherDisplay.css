@@ -2,7 +2,7 @@
   position: fixed;
   box-sizing: border-box;
   top: 50%;
-  transform: translate(-100%, -50%);
+  transform: translate(-105%, -50%);
   width: 300px;
   height: 200px;
   display: flex;

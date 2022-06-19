@@ -3,8 +3,17 @@
   padding: 10px;
   background-color: rgba(105, 105, 105, 0.15);
   border-radius: 12px;
+  min-height: calc(100vh - 380px);
 }
-
+.noDiary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  line-height: 50px;
+  color: #ffffff80;
+  text-align: center;
+}
 .diary {
   overflow: hidden;
   position: relative;
