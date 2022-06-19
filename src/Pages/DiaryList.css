@@ -1,6 +1,8 @@
 .DiaryList {
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 10px;
+  background-color: rgba(105, 105, 105, 0.15);
+  border-radius: 12px;
 }
 
 .diary {
@@ -78,7 +80,6 @@
 }
 .diary .diaryContent .titleContent .content {
   width: 95%;
-  overflow-x: auto;
 }
 .diary .diaryContent .dateNweatherIcon {
   flex: 1 1 15%;

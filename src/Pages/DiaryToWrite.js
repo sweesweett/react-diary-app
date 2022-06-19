@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import uuid from 'react-uuid';
 import './DiaryToWrite.css';
 
 const DiaryToWrite = ({ state, setState }) => {
@@ -9,15 +10,17 @@ const DiaryToWrite = ({ state, setState }) => {
     // console.log(e.target.value);
   };
   const diarySubmit = () => {
-    if (title.current.value === '' || content.current.vale === '') {
+    if (title.current.value === '' || content.current.value === '') {
       alert('일기를 작성해주세요');
       return;
     }
+    let origin_id = uuid();
     const createdTime = new Date().toLocaleString();
     localStorage.setItem(
       'diaryList',
       JSON.stringify([
         {
+          origin_id,
           [title.current.name]: title.current.value,
           [content.current.name]: content.current.value,
           [color.current.name]: color.current.value,
@@ -28,6 +31,7 @@ const DiaryToWrite = ({ state, setState }) => {
     );
     setState([
       {
+        origin_id,
         [title.current.name]: title.current.value,
         [content.current.name]: content.current.value,
         [color.current.name]: color.current.value,
@@ -35,6 +39,9 @@ const DiaryToWrite = ({ state, setState }) => {
       },
       ...state,
     ]);
+    title.current.value = '';
+    content.current.value = '';
+    color.current.value = '';
   };
   return (
     <div className='DiaryToWrite'>
