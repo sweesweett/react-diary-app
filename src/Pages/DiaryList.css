@@ -66,10 +66,21 @@
 .diary .editDelete span:last-child {
   margin-right: 0;
 }
+
 .diary .diaryContent {
   display: flex;
   justify-content: space-between;
   margin: 5px;
+}
+.diary .diaryContent .editContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 85%;
+  width: 60%;
+}
+.diary .diaryContent .editContent button {
+  width: 80px;
+  align-self: flex-end;
 }
 .diary .diaryContent .titleContent {
   flex: 1 1 85%;
