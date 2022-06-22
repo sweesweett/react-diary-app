@@ -1,4 +1,4 @@
-import '../Pages/DiaryList.css';
+import './DiaryList.css';
 import React, { useRef, useState } from 'react';
 const Diary = ({ el, index, state, setState }) => {
   const [openEdit, setOpenEdit] = useState(false);

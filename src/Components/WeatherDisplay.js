@@ -39,14 +39,22 @@ const WeatherDisplay = ({ setWeather, weather }) => {
         </div>
         <div className='minMaxTemp'>
           {/* //flex row*/}
-          <div>{weather.temp_min}℃</div>
-          <div>{weather.temp_max}℃</div>
+          <div>
+            최고 <span className='Emp'>{weather.temp_min}℃</span>
+          </div>
+          <div>
+            최저 <span className='Emp'>{weather.temp_max}℃</span>
+          </div>
         </div>
       </div>
       <div className='weatherRight'>
         {/* //flex column */}
-        <div>{weather.wind}m/s</div>
-        <div>{weather.humidity}%</div>
+        <div>
+          바람속도<span className='Emp'>{weather.wind}m/s</span>
+        </div>
+        <div>
+          습도 <span className='Emp'>{weather.humidity}%</span>
+        </div>
       </div>
     </section>
   );

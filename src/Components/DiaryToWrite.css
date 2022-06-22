@@ -1,0 +1,39 @@
+.DiaryToWrite {
+  height: 200px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(111, 106, 106, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  /* border: 2px solid #ffffff6b; */
+  filter: drop-shadow(5px 1px 2px rgba(16, 8, 255, 0.322));
+  border-width: 2px 2px 1px 0.5px;
+  border-style: solid;
+  border-color: #ffffff6b;
+  color: white;
+  position: relative;
+}
+.DiaryToWrite div {
+  margin: 10px;
+}
+.DiaryToWrite input[type='text'] {
+  width: 70%;
+  margin-right: 20px;
+  padding: 5px;
+}
+.DiaryToWrite textarea {
+  width: 85%;
+  height: 90px;
+  margin: auto;
+  resize: none;
+}
+.DiaryToWrite button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  background: rgba(208, 210, 255, 0.5);
+}

@@ -6,9 +6,7 @@
   min-height: calc(100vh - 380px);
 }
 .noDiary {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 50px;
   font-size: 30px;
   line-height: 50px;
   color: #ffffff80;
@@ -19,7 +17,7 @@
   position: relative;
   min-height: 120px;
   margin: 10px;
-  padding: 10px 20px;
+  padding: 10px 10px 10px 20px;
   border-radius: 12px;
   background: rgba(111, 106, 106, 0.5);
   /* background: rgba(255, 255, 255, 0.311); */
@@ -68,7 +66,7 @@
   text-align: right;
 }
 .diary .editDelete span {
-  margin: 5px;
+  margin-right: 7px;
   font-size: 14px;
   cursor: pointer;
 }
@@ -110,15 +108,14 @@
   align-items: flex-end;
 }
 .diary .diaryContent .dateNweatherIcon .date {
-  text-align: center;
 }
 
 .diary .weatherIcon {
   content: '';
   background: url('../SeekPng.com_weather-icon-png_1330512.png');
-  background-position: 3px 0px;
+  background-position: -96px -96px;
   background-repeat: no-repeat;
-  width: 70px;
-  height: 70px;
+  width: 64px;
+  height: 64px;
   filter: drop-shadow(0px 2px 3px #e8ff3d99);
 }

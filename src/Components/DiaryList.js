@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './DiaryList.css';
-import Diary from '../Components/Diary';
+import Diary from './Diary';
 const DiaryList = ({ state, setState }) => {
   return (
     <ul className='DiaryList'>

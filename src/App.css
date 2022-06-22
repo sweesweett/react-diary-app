@@ -25,3 +25,7 @@ body {
   width: 600px;
   margin: 50px auto 10px;
 }
+.App h2.title {
+  color: white;
+  margin: 10px;
+}

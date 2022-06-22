@@ -53,14 +53,15 @@ const DiaryToWrite = ({ state, setState }) => {
           onChange={handleInput}
           ref={title}
         />
+        <input ref={color} className='color' name='color' type='color' />
       </div>
       <div>
         <textarea ref={content} className='content' name='content'></textarea>
       </div>
-      <div>
-        <input ref={color} className='color' name='color' type='color' />
-      </div>
-      <button onClick={diarySubmit}>등록하기</button>
+
+      <button className='submitBtn' onClick={diarySubmit}>
+        등록하기
+      </button>
     </div>
   );
 };
