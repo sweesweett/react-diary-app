@@ -85,6 +85,17 @@
   flex: 1 1 85%;
   width: 60%;
 }
+.diary .diaryContent .editContent .editTitle {
+  width: 70%;
+  margin-bottom: 5px;
+}
+.diary .diaryContent .editContent .editContent {
+  margin-bottom: 5px;
+  width: 100%;
+  resize: none;
+
+  overflow: auto;
+}
 .diary .diaryContent .editContent button {
   width: 80px;
   align-self: flex-end;
@@ -98,6 +109,9 @@
 }
 .diary .diaryContent .titleContent .content {
   width: 95%;
+  height: 90px;
+  overflow: auto;
+  box-sizing: border-box;
 }
 .diary .diaryContent .dateNweatherIcon {
   flex: 1 1 15%;

@@ -44,9 +44,20 @@ const Diary = ({ el, index, state, setState }) => {
       <div className='diaryContent'>
         {openEdit === true ? (
           <div className='editContent'>
-            <input type='text' ref={editTitle} defaultValue={el.title} />
-            <textarea ref={editContent} defaultValue={el.content}></textarea>
-            <button onClick={confirmEdit}>수정하기</button>
+            <input
+              className='editTitle'
+              type='text'
+              ref={editTitle}
+              defaultValue={el.title}
+            />
+            <textarea
+              className='editContent'
+              ref={editContent}
+              defaultValue={el.content}
+            ></textarea>
+            <button className='confirmBtn' onClick={confirmEdit}>
+              수정하기
+            </button>
           </div>
         ) : (
           <div className='titleContent'>

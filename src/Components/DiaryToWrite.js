@@ -52,11 +52,17 @@ const DiaryToWrite = ({ state, setState }) => {
           name='title'
           onChange={handleInput}
           ref={title}
+          placeholder='제목을 적어주세요'
         />
         <input ref={color} className='color' name='color' type='color' />
       </div>
       <div>
-        <textarea ref={content} className='content' name='content'></textarea>
+        <textarea
+          ref={content}
+          className='content'
+          name='content'
+          placeholder='오늘의 일기를 작성해주세요. 오늘의 기분을 컬러피커로 표현해주세요'
+        ></textarea>
       </div>
 
       <button className='submitBtn' onClick={diarySubmit}>
