@@ -2,6 +2,7 @@ import './App.css';
 import DiaryToWrite from './Components/DiaryToWrite';
 import DiaryList from './Components/DiaryList';
 import WeatherDisplay from './Components/WeatherDisplay';
+import uuid from 'react-uuid';
 import React, { useEffect, useState } from 'react';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
   const [state, setState] = useState(initialState);
   useEffect(() => {
     fetch(
-      'http://api.openweathermap.org/data/2.5/weather?id=1835848&lang=kr&appid='
+      `http://api.openweathermap.org/data/2.5/weather?id=1835848&lang=kr&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
     )
       .then((res) => res.json())
       .then((data) => ({
@@ -23,6 +24,7 @@ function App() {
         temp_min: Math.round(data.main.temp_min - 273),
         temp_max: Math.round(data.main.temp_max - 273),
         wind: data.wind.speed,
+        icon: data.weather[0].icon,
       }))
       .then((obj) => {
         console.log(obj);
@@ -38,22 +40,21 @@ function App() {
     // });
   }, []);
 
-  const diarySubmit = () => {
-    if (title.current.value === '' || content.current.value === '') {
-      alert('일기를 작성해주세요');
-      return;
-    }
+  const diarySubmit = (title, content, color) => {
     let origin_id = uuid();
     const createdTime = new Date().toLocaleString();
+    const icon = weather.icon;
+    console.log(icon);
     localStorage.setItem(
       'diaryList',
       JSON.stringify([
         {
           origin_id,
-          [title.current.name]: title.current.value,
-          [content.current.name]: content.current.value,
-          [color.current.name]: color.current.value,
+          title,
+          content,
+          color,
           createdTime,
+          icon,
         },
         ...state,
       ])
@@ -61,23 +62,22 @@ function App() {
     setState([
       {
         origin_id,
-        [title.current.name]: title.current.value,
-        [content.current.name]: content.current.value,
-        [color.current.name]: color.current.value,
+        title,
+        content,
+        color,
         createdTime,
+        icon: weather.icon,
       },
       ...state,
     ]);
-    title.current.value = '';
-    content.current.value = '';
-    color.current.value = '';
+    console.log(state);
   };
 
   return (
     <div className='App'>
       <h2 className='title'>색깔 일기장</h2>
       <WeatherDisplay weather={weather} />
-      <DiaryToWrite state={state} setState={setState} weather={weather} />
+      <DiaryToWrite diarySubmit={diarySubmit} />
       <DiaryList state={state} setState={setState} />
     </div>
   );
