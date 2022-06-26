@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
 import './DiaryList.css';
 import Diary from './Diary';
-const DiaryList = ({ state, setState }) => {
+const DiaryList = ({ state, diaryDelete, diaryEdit }) => {
   return (
     <ul className='DiaryList'>
       {state.length !== 0 ? (
@@ -12,7 +11,8 @@ const DiaryList = ({ state, setState }) => {
               el={el}
               index={index}
               state={state}
-              setState={setState}
+              diaryDelete={diaryDelete}
+              diaryEdit={diaryEdit}
             />
           );
         })

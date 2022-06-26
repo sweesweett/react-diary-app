@@ -1,14 +1,21 @@
 import './DiaryList.css';
 import React, { useRef, useState } from 'react';
-const Diary = ({ el, index, state, setState }) => {
+const Diary = ({ el, index, state, diaryDelete, diaryEdit }) => {
   const [openEdit, setOpenEdit] = useState(false);
   const editTitle = useRef();
   const editContent = useRef();
+  // const handleDelete = (index) => {
+  //   if (window.confirm('삭제하시겠습니까?')) {
+  //     state.splice(index, 1);
+  //     localStorage.setItem('diaryList', JSON.stringify([...state]));
+  //     setState([...state]);
+  //   } else {
+  //     return;
+  //   }
+  // };
   const handleDelete = () => {
     if (window.confirm('삭제하시겠습니까?')) {
-      state.splice(index, 1);
-      localStorage.setItem('diaryList', JSON.stringify([...state]));
-      setState([...state]);
+      diaryDelete(index);
     } else {
       return;
     }
@@ -18,10 +25,7 @@ const Diary = ({ el, index, state, setState }) => {
   };
   const confirmEdit = () => {
     if (window.confirm('진짜 수정하시겠습니까?')) {
-      el.title = editTitle.current.value;
-      el.content = editContent.current.value;
-      setState([...state]);
-      localStorage.setItem('diaryList', JSON.stringify([...state]));
+      diaryEdit(el, editTitle.current.value, editContent.current.value);
       setOpenEdit(!openEdit);
     } else {
       setOpenEdit(!openEdit);

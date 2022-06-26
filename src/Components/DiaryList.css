@@ -121,8 +121,8 @@
   justify-content: flex-end;
   align-items: flex-end;
 }
-.diary .diaryContent .dateNweatherIcon .date {
-}
+/* .diary .diaryContent .dateNweatherIcon .date {
+} */
 
 .diary .weatherIcon {
   content: '';
