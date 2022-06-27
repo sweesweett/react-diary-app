@@ -1,6 +1,6 @@
 import './DiaryList.css';
 import Diary from './Diary';
-const DiaryList = ({ state, diaryDelete, diaryEdit }) => {
+const DiaryList = ({ state, diaryDelete, diaryEdit, weatherIcon }) => {
   return (
     <ul className='DiaryList'>
       {state.length !== 0 ? (
@@ -13,6 +13,7 @@ const DiaryList = ({ state, diaryDelete, diaryEdit }) => {
               state={state}
               diaryDelete={diaryDelete}
               diaryEdit={diaryEdit}
+              weatherIcon={weatherIcon}
             />
           );
         })

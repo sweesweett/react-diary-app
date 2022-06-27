@@ -90,16 +90,44 @@ function App() {
     setState([...state]);
     localStorage.setItem('diaryList', JSON.stringify([...state]));
   };
-
+  const weatherIcon = (icon) => {
+    //아 스위치로할까.....
+    const style = {};
+    if (icon === '04d' && icon === '04n' && icon === '03d' && icon === '03n') {
+      style.backgroundPosition = '0 0';
+    } else if (icon === '09d' && icon === '09n') {
+      style.backgroundPosition = '-672px -96px';
+    } else if (icon === '11d' && icon === '11n') {
+      style.backgroundPosition = '-96px -288px';
+    } else if (icon === '13d' && icon === '13n') {
+      style.backgroundPosition = '0 -384px';
+    } else if (icon === '50d' && icon === '50n') {
+      style.backgroundPosition = '0 -192px';
+    } else if (icon === '01d') {
+      style.backgroundPosition = '-96px 0';
+    } else if (icon === '01n') {
+      style.backgroundPosition = '-192px 0';
+    } else if (icon === '02d') {
+      style.backgroundPosition = '-288px 0';
+    } else if (icon === '02n') {
+      style.backgroundPosition = '-384px 0';
+    } else if (icon === '10d') {
+      style.backgroundPosition = '-192px -96px';
+    } else if (icon === '10n') {
+      style.backgroundPosition = '-288px -96px';
+    }
+    return style;
+  };
   return (
     <div className='App'>
       <h2 className='title'>색깔 일기장</h2>
-      <WeatherDisplay weather={weather} />
+      <WeatherDisplay weather={weather} weatherIcon={weatherIcon} />
       <DiaryToWrite diarySubmit={diarySubmit} />
       <DiaryList
         state={state}
         diaryDelete={diaryDelete}
         diaryEdit={diaryEdit}
+        weatherIcon={weatherIcon}
       />
     </div>
   );

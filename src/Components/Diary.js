@@ -1,6 +1,6 @@
 import './DiaryList.css';
 import React, { useRef, useState } from 'react';
-const Diary = ({ el, index, state, diaryDelete, diaryEdit }) => {
+const Diary = ({ el, index, state, diaryDelete, diaryEdit, weatherIcon }) => {
   const [openEdit, setOpenEdit] = useState(false);
   const editTitle = useRef();
   const editContent = useRef();
@@ -76,7 +76,10 @@ const Diary = ({ el, index, state, diaryDelete, diaryEdit }) => {
           </div>
           <div
             className='weatherIcon'
-            style={{ filter: `drop-shadow(0px 2px 3px ${el.color}99)` }}
+            style={{
+              ...weatherIcon(el.icon),
+              ...{ filter: `drop-shadow(0px 2px 3px ${el.color}99)` },
+            }}
           ></div>
         </div>
       </div>

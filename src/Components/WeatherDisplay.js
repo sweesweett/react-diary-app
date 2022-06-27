@@ -2,12 +2,12 @@ import React from 'react';
 // import dummy from '../Resource/dummy';
 import './WeatherDisplay.css';
 
-const WeatherDisplay = ({ weather }) => {
+const WeatherDisplay = ({ weather, weatherIcon }) => {
   return (
     <section className='weatherDisplay'>
       <div className='weatherLeft'>
         <div className='currentTemp'>
-          <div className='emoji'></div>
+          <div className='emoji' style={weatherIcon(weather.icon)}></div>
           <div className='temp'>
             <span>{weather.desc}</span>
             <div className='nowTemp'>{weather.temp}℃</div>
