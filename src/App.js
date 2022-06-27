@@ -115,6 +115,8 @@ function App() {
       style.backgroundPosition = '-192px -96px';
     } else if (icon === '10n') {
       style.backgroundPosition = '-288px -96px';
+    } else {
+      style.backgroundPosition = '-384px -384px';
     }
     return style;
   };

@@ -15,7 +15,7 @@
 .diary {
   overflow: hidden;
   position: relative;
-  min-height: 120px;
+  height: 150px;
   margin: 10px;
   padding: 10px 10px 10px 20px;
   border-radius: 12px;
@@ -118,11 +118,12 @@
   margin-top: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-around;
   align-items: flex-end;
 }
-/* .diary .diaryContent .dateNweatherIcon .date {
-} */
+.diary .diaryContent .dateNweatherIcon .date {
+  font-size: 18px;
+}
 
 .diary .weatherIcon {
   content: '';
