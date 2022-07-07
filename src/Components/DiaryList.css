@@ -61,7 +61,7 @@
 .diary .editDelete {
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 10px;
   margin: 0 5px 5px;
   text-align: right;
 }

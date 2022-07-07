@@ -1,6 +1,14 @@
 import './DiaryList.css';
 import Diary from './Diary';
-const DiaryList = ({ state, diaryDelete, diaryEdit, weatherIcon }) => {
+const DiaryList = ({
+  state,
+  diaryDelete,
+  diaryEdit,
+  weatherIcon,
+  modalOpen,
+  setModalOpen,
+  setModalContent,
+}) => {
   return (
     <ul className='DiaryList'>
       {state.length !== 0 ? (
@@ -14,6 +22,9 @@ const DiaryList = ({ state, diaryDelete, diaryEdit, weatherIcon }) => {
               diaryDelete={diaryDelete}
               diaryEdit={diaryEdit}
               weatherIcon={weatherIcon}
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
+              setModalContent={setModalContent}
             />
           );
         })

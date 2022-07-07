@@ -2,6 +2,7 @@ import './App.css';
 import DiaryToWrite from './Components/DiaryToWrite';
 import DiaryList from './Components/DiaryList';
 import WeatherDisplay from './Components/WeatherDisplay';
+import Modal from './Components/Modal';
 import uuid from 'react-uuid';
 import React, { useEffect, useState } from 'react';
 import dummy from './Resource/dummy';
@@ -13,6 +14,8 @@ function App() {
   }
   const [weather, setWeather] = useState({});
   const [state, setState] = useState(initialState);
+  const [modalContent, setModalContent] = useState({});
+  const [modalOpen, setModalOpen] = useState(false);
   useEffect(() => {
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?id=1835848&lang=kr&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
@@ -93,15 +96,15 @@ function App() {
   const weatherIcon = (icon) => {
     //아 스위치로할까.....
     const style = {};
-    if (icon === '04d' && icon === '04n' && icon === '03d' && icon === '03n') {
+    if (icon === '04d' || icon === '04n' || icon === '03d' || icon === '03n') {
       style.backgroundPosition = '0 0';
-    } else if (icon === '09d' && icon === '09n') {
+    } else if (icon === '09d' || icon === '09n') {
       style.backgroundPosition = '-672px -96px';
-    } else if (icon === '11d' && icon === '11n') {
+    } else if (icon === '11d' || icon === '11n') {
       style.backgroundPosition = '-96px -288px';
-    } else if (icon === '13d' && icon === '13n') {
+    } else if (icon === '13d' || icon === '13n') {
       style.backgroundPosition = '0 -384px';
-    } else if (icon === '50d' && icon === '50n') {
+    } else if (icon === '50d' || icon === '50n') {
       style.backgroundPosition = '0 -192px';
     } else if (icon === '01d') {
       style.backgroundPosition = '-96px 0';
@@ -122,6 +125,13 @@ function App() {
   };
   return (
     <div className='App'>
+      {modalOpen && (
+        <Modal
+          modalContent={modalContent}
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+        />
+      )}
       <h2 className='title'>색깔 일기장</h2>
       <WeatherDisplay weather={weather} weatherIcon={weatherIcon} />
       <DiaryToWrite diarySubmit={diarySubmit} />
@@ -130,6 +140,9 @@ function App() {
         diaryDelete={diaryDelete}
         diaryEdit={diaryEdit}
         weatherIcon={weatherIcon}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        setModalContent={setModalContent}
       />
     </div>
   );

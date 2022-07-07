@@ -1,9 +1,20 @@
 import './DiaryList.css';
 import React, { useRef, useState } from 'react';
-const Diary = ({ el, index, state, diaryDelete, diaryEdit, weatherIcon }) => {
+const Diary = ({
+  el,
+  index,
+  state,
+  diaryDelete,
+  diaryEdit,
+  weatherIcon,
+  modalOpen,
+  setModalOpen,
+  setModalContent,
+}) => {
   const [openEdit, setOpenEdit] = useState(false);
   const editTitle = useRef();
   const editContent = useRef();
+
   // const handleDelete = (index) => {
   //   if (window.confirm('삭제하시겠습니까?')) {
   //     state.splice(index, 1);
@@ -14,23 +25,30 @@ const Diary = ({ el, index, state, diaryDelete, diaryEdit, weatherIcon }) => {
   //   }
   // };
   const handleDelete = () => {
-    if (window.confirm('삭제하시겠습니까?')) {
-      diaryDelete(index);
-    } else {
-      return;
-    }
+    setModalOpen(!modalOpen);
+    setModalContent({
+      target: 'delete',
+      func: () => diaryDelete(index),
+    });
   };
   const handleEdit = () => {
     setOpenEdit(!openEdit);
   };
   const confirmEdit = () => {
-    if (window.confirm('진짜 수정하시겠습니까?')) {
-      diaryEdit(el, editTitle.current.value, editContent.current.value);
-      setOpenEdit(!openEdit);
-    } else {
-      setOpenEdit(!openEdit);
-      return;
-    }
+    setModalOpen(!modalOpen);
+    setModalContent({
+      target: 'edit',
+      func: () =>
+        diaryEdit(el, editTitle.current.value, editContent.current.value),
+    });
+    // setOpenEdit(!openEdit);
+    // if (window.confirm('진짜 수정하시겠습니까?')) {
+    //   diaryEdit(el, editTitle.current.value, editContent.current.value);
+    //   setOpenEdit(!openEdit);
+    // } else {
+    //   setOpenEdit(!openEdit);
+    //   return;
+    // }
   };
   return (
     <li
@@ -66,7 +84,9 @@ const Diary = ({ el, index, state, diaryDelete, diaryEdit, weatherIcon }) => {
         ) : (
           <div className='titleContent'>
             <h3 className='title'>{el.title}</h3>
-            <p className='content'>{el.content}</p>
+            <p className='content' style={{ whiteSpace: 'pre-wrap' }}>
+              {el.content}
+            </p>
           </div>
         )}
 
