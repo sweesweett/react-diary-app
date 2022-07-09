@@ -1,0 +1,67 @@
+.modalBg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+}
+.modalContent {
+  width: 400px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 5;
+  text-align: center;
+  border-radius: 12px;
+  background: rgba(89, 90, 128, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-width: 2px 2px 1px 0.5px;
+  border-style: solid;
+  border-color: #ffffff6b;
+  color: white;
+}
+
+.modalContent .modalMessage {
+  flex: 1 1 75%;
+  padding: 40px;
+}
+.modalContent .btns {
+  flex: 1 1 25%;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+.modalContent .btns::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  left: calc(50% - 1px);
+}
+
+.modalContent .btns button {
+  flex: 1 1 50%;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.modalContent .btns .yes {
+  background-color: rgba(253, 89, 89, 0.05);
+  border-radius: 0 0 0 12px;
+}
+.modalContent .btns .no {
+  background-color: rgba(128, 255, 138, 0.05);
+  border-radius: 0 0 12 0px;
+}

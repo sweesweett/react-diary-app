@@ -22,7 +22,7 @@ const Modal = ({ modalContent, modalOpen, setModalOpen }) => {
     <div className='Modal'>
       <div className='modalBg'></div>
       <div className='modalContent'>
-        <div>{doing}하시겠습니까?</div>
+        <div className='modalMessage'>이 일기를 {doing}하시겠습니까?</div>
         <div className='btns'>
           <button onClick={handleYesOrNo} className='yes'>
             {doing}할게요!
