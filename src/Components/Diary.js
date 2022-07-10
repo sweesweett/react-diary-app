@@ -1,9 +1,8 @@
 import './DiaryList.css';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 const Diary = ({
   el,
   index,
-  state,
   diaryDelete,
   diaryEdit,
   weatherIcon,
@@ -14,7 +13,11 @@ const Diary = ({
   const [openEdit, setOpenEdit] = useState(false);
   const editTitle = useRef();
   const editContent = useRef();
-
+  useEffect(() => {
+    if (modalOpen === false && openEdit === true) {
+      setOpenEdit(!openEdit);
+    } // 의존성 배열 오류남.. useMemo빨리배워야함 ㅜㅠㅠ
+  }, [modalOpen]);
   // const handleDelete = (index) => {
   //   if (window.confirm('삭제하시겠습니까?')) {
   //     state.splice(index, 1);
@@ -65,18 +68,20 @@ const Diary = ({
       </div>
       <div className='diaryContent'>
         {openEdit === true ? (
-          <div className='editContent'>
-            <input
-              className='editTitle'
-              type='text'
-              ref={editTitle}
-              defaultValue={el.title}
-            />
-            <textarea
-              className='editContent'
-              ref={editContent}
-              defaultValue={el.content}
-            ></textarea>
+          <div className='editDiary'>
+            <div className='editTitleContent'>
+              <input
+                className='editTitle'
+                type='text'
+                ref={editTitle}
+                defaultValue={el.title}
+              />
+              <textarea
+                className='editContent'
+                ref={editContent}
+                defaultValue={el.content}
+              ></textarea>
+            </div>
             <button className='confirmBtn' onClick={confirmEdit}>
               수정하기
             </button>
@@ -98,7 +103,7 @@ const Diary = ({
             className='weatherIcon'
             style={{
               ...weatherIcon(el.icon),
-              ...{ filter: `drop-shadow(0px 2px 3px ${el.color}99)` },
+              filter: `drop-shadow(0px 2px 3px ${el.color}99)`,
             }}
           ></div>
         </div>

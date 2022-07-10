@@ -78,27 +78,33 @@
   display: flex;
   justify-content: space-between;
   margin: 5px;
+  height: 95%;
 }
-.diary .diaryContent .editContent {
-  display: flex;
-  flex-direction: column;
+.diary .diaryContent .editDiary {
+  /* display: flex;
+  flex-direction: column; */
   flex: 1 1 85%;
-  width: 60%;
-}
-.diary .diaryContent .editContent .editTitle {
-  width: 70%;
   margin-bottom: 5px;
 }
-.diary .diaryContent .editContent .editContent {
+.diary .diaryContent .editDiary .editTitleContent {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.diary .diaryContent .editDiary .editTitle {
+  width: 70%;
+  margin-bottom: 5px;
+  flex: 1 1 20%;
+}
+.diary .diaryContent .editDiary .editContent {
   margin-bottom: 5px;
   width: 100%;
   resize: none;
-
   overflow: auto;
+  flex: 1 1 80%;
 }
 .diary .diaryContent .editContent button {
-  width: 80px;
-  align-self: flex-end;
+  float: right;
 }
 .diary .diaryContent .titleContent {
   flex: 1 1 85%;
