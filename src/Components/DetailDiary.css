@@ -1,0 +1,7 @@
+.DetailDiary {
+  margin-top: 25px;
+  padding: 10px;
+  background-color: rgba(105, 105, 105, 0.15);
+  border-radius: 12px;
+  min-height: calc(100vh - 380px);
+}

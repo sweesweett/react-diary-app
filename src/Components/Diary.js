@@ -1,5 +1,7 @@
 import './DiaryList.css';
 import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 const Diary = ({
   el,
   index,
@@ -15,7 +17,7 @@ const Diary = ({
   const editContent = useRef();
   useEffect(() => {
     if (modalOpen === false && openEdit === true) {
-      setOpenEdit(!openEdit);
+      setOpenEdit(false);
     } // 의존성 배열 오류남.. useMemo빨리배워야함 ㅜㅠㅠ
   }, [modalOpen]);
   // const handleDelete = (index) => {
@@ -88,10 +90,14 @@ const Diary = ({
           </div>
         ) : (
           <div className='titleContent'>
-            <h3 className='title'>{el.title}</h3>
-            <p className='content' style={{ whiteSpace: 'pre-wrap' }}>
-              {el.content}
-            </p>
+            <Link to={`/${el.origin_id}`}>
+              <h3 className='title'>
+                {el.title.length > 20
+                  ? `${el.title.slice(0, 20)}...`
+                  : el.title}
+              </h3>
+            </Link>
+            <p className='content'>{el.content}</p>
           </div>
         )}
 

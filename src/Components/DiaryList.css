@@ -110,14 +110,19 @@
   flex: 1 1 85%;
   width: 60%;
 }
-.diary .diaryContent .titleContent h3 {
+.diary .diaryContent .titleContent .title {
   margin-bottom: 5px;
+  cursor: pointer;
+}
+.diary .diaryContent .titleContent .title:hover {
+  text-decoration: underline;
 }
 .diary .diaryContent .titleContent .content {
   width: 95%;
   height: 90px;
   overflow: auto;
   box-sizing: border-box;
+  white-space: 'pre-wrap';
 }
 .diary .diaryContent .dateNweatherIcon {
   flex: 1 1 15%;

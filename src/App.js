@@ -3,9 +3,11 @@ import DiaryToWrite from './Components/DiaryToWrite';
 import DiaryList from './Components/DiaryList';
 import WeatherDisplay from './Components/WeatherDisplay';
 import Modal from './Components/Modal';
+import DetailDiary from './Components/DetailDiary';
 import uuid from 'react-uuid';
 import React, { useEffect, useState } from 'react';
 import dummy from './Resource/dummy';
+import { Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   let initialState = JSON.parse(localStorage.getItem('diaryList'));
@@ -135,15 +137,26 @@ function App() {
       <h2 className='title'>색깔 일기장</h2>
       <WeatherDisplay weather={weather} weatherIcon={weatherIcon} />
       <DiaryToWrite diarySubmit={diarySubmit} />
-      <DiaryList
-        state={state}
-        diaryDelete={diaryDelete}
-        diaryEdit={diaryEdit}
-        weatherIcon={weatherIcon}
-        modalOpen={modalOpen}
-        setModalOpen={setModalOpen}
-        setModalContent={setModalContent}
-      />
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <DiaryList
+              state={state}
+              diaryDelete={diaryDelete}
+              diaryEdit={diaryEdit}
+              weatherIcon={weatherIcon}
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
+              setModalContent={setModalContent}
+            />
+          }
+        />
+        <Route path='/:id' element={<DetailDiary state={state} />} />
+        //자세히보기
+        <Route path='/:id' element={<DiaryList />} />
+        //수정
+      </Routes>
     </div>
   );
 }
