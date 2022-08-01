@@ -7,13 +7,14 @@ import DetailDiary from './Components/DetailDiary';
 import uuid from 'react-uuid';
 import React, { useEffect, useState } from 'react';
 import dummy from './Resource/dummy';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function App() {
   let initialState = JSON.parse(localStorage.getItem('diaryList'));
   if (initialState === null) {
     initialState = [];
   }
+  const navigate = useNavigate();
   const [weather, setWeather] = useState({});
   const [state, setState] = useState(initialState);
   const [modalContent, setModalContent] = useState({});
@@ -81,6 +82,7 @@ function App() {
       ...state,
     ]);
     console.log(state);
+    navigate('/');
   };
   //다이어리 삭제
   const diaryDelete = (index) => {
@@ -134,7 +136,9 @@ function App() {
           setModalOpen={setModalOpen}
         />
       )}
-      <h2 className='title'>색깔 일기장</h2>
+      <h2 className='title' onClick={() => navigate('/')}>
+        색깔 일기장
+      </h2>
       <WeatherDisplay weather={weather} weatherIcon={weatherIcon} />
       <DiaryToWrite diarySubmit={diarySubmit} />
       <Routes>
@@ -153,9 +157,9 @@ function App() {
           }
         />
         <Route path='/:id' element={<DetailDiary state={state} />} />
-        //자세히보기
+        {/* //자세히보기 */}
         <Route path='/:id' element={<DiaryList />} />
-        //수정
+        {/* //수정 */}
       </Routes>
     </div>
   );

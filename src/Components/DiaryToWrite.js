@@ -20,7 +20,7 @@ const DiaryToWrite = ({ diarySubmit }) => {
     );
     title.current.value = '';
     content.current.value = '';
-    color.current.value = '';
+    color.current.value = '#000000';
   };
   return (
     <div className='DiaryToWrite'>

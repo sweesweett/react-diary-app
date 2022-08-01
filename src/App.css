@@ -28,4 +28,5 @@ body {
 .App h2.title {
   color: white;
   margin: 10px;
+  cursor: pointer;
 }

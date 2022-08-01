@@ -4,4 +4,15 @@
   background-color: rgba(105, 105, 105, 0.15);
   border-radius: 12px;
   min-height: calc(100vh - 380px);
+  padding: 20px;
+  position: relative;
+  height: 150px;
+  border-radius: 12px;
+  background: rgba(111, 106, 106, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-width: 2px 2px 1px 0.5px;
+  border-style: solid;
+  border-color: #ffffff6b;
+  color: white;
 }

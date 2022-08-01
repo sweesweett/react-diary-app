@@ -97,7 +97,12 @@ const Diary = ({
                   : el.title}
               </h3>
             </Link>
-            <p className='content'>{el.content}</p>
+            <p className='content'>
+              {' '}
+              {el.content.length > 20
+                ? `${el.content.slice(0, 20)}...`
+                : el.content}
+            </p>
           </div>
         )}
 
