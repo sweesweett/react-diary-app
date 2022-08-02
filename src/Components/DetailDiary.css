@@ -16,3 +16,44 @@
   border-color: #ffffff6b;
   color: white;
 }
+.DetailDiary .btns {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.DetailDiary .btns button {
+  display: flex;
+  border: none;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+.DetailDiary .btns button:hover {
+  text-shadow: 0 0 5px white;
+}
+.DetailDiary .btns button:first-child {
+  /* font-size: 16px; */
+  padding: 0;
+}
+.DetailDiary .btns .editNDelete {
+  position: absolute;
+  right: 0px;
+  bottom: -65px;
+  background-color: rgba(94, 94, 94, 0.6);
+  backdrop-filter: blur(10px);
+  display: none;
+  z-index: 2;
+}
+.DetailDiary .btns .editNDelete li {
+  cursor: pointer;
+  padding: 5px 10px;
+}
+.DetailDiary .btns .editNDelete li:hover {
+  text-shadow: 0 0 5px white;
+}
+.DetailDiary .btns .editNDelete li:first-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
