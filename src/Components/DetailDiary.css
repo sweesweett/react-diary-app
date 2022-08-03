@@ -6,7 +6,6 @@
   min-height: calc(100vh - 380px);
   padding: 20px;
   position: relative;
-  height: 150px;
   border-radius: 12px;
   background: rgba(111, 106, 106, 0.5);
   backdrop-filter: blur(20px);
@@ -56,4 +55,16 @@
 }
 .DetailDiary .btns .editNDelete li:first-child {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.DetailDiary .title {
+  margin: 15px 5px 5px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.DetailDiary .date {
+  margin: 10px;
+}
+.DetailDiary .content {
+  margin: 10px 5px 10px 10px;
+  white-space: pre-wrap;
 }

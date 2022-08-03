@@ -1,14 +1,28 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import './DetailDiary.css';
 
-const DetailDiary = ({ state }) => {
+const DetailDiary = ({
+  state,
+  diaryDelete,
+  modalOpen,
+  setModalOpen,
+  setModalContent,
+}) => {
   const { id } = useParams();
   const [moreBtnOpen, setmoreBtnOpen] = useState(false);
   const detail = state.filter((el) => el.origin_id === id)[0];
   const navigate = useNavigate();
   const handleBtnOpen = () => {
     setmoreBtnOpen(!moreBtnOpen);
+  };
+  const handleDelete = () => {
+    setModalOpen(!modalOpen);
+    setModalContent({
+      target: 'delete',
+      func: () => diaryDelete(id),
+    });
+    setmoreBtnOpen(false);
   };
   return (
     <div
@@ -31,15 +45,18 @@ const DetailDiary = ({ state }) => {
           className='editNDelete'
           style={moreBtnOpen ? { display: 'block' } : { display: 'none' }}
         >
-          <li className='edit'>수정</li>
-          <li className='delete'>삭제</li>
+          <li className='edit'>
+            <Link to={`/${id}/edit`}>수정</Link>
+          </li>
+          <li className='delete' onClick={handleDelete}>
+            삭제
+          </li>
         </ul>
       </div>
-      <div className='date'>작성한 날짜 ✨ {detail.createdTime}</div>
-      <div className='title'>제목 🎇 {detail.title}</div>
 
+      <div className='title'>✨ {detail.title}</div>
+      <div className='date'>{detail.createdTime}</div>
       <div className='content'>
-        내용 🌟
         <p>{detail.content}</p>
       </div>
     </div>

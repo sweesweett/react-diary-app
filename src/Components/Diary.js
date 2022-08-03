@@ -1,60 +1,8 @@
 import './DiaryList.css';
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Diary = ({
-  el,
-  index,
-  diaryDelete,
-  diaryEdit,
-  weatherIcon,
-  modalOpen,
-  setModalOpen,
-  setModalContent,
-}) => {
-  const [openEdit, setOpenEdit] = useState(false);
-  const editTitle = useRef();
-  const editContent = useRef();
-  useEffect(() => {
-    if (modalOpen === false && openEdit === true) {
-      setOpenEdit(false);
-    } // 의존성 배열 오류남.. useMemo빨리배워야함 ㅜㅠㅠ
-  }, [modalOpen]);
-  // const handleDelete = (index) => {
-  //   if (window.confirm('삭제하시겠습니까?')) {
-  //     state.splice(index, 1);
-  //     localStorage.setItem('diaryList', JSON.stringify([...state]));
-  //     setState([...state]);
-  //   } else {
-  //     return;
-  //   }
-  // };
-  const handleDelete = () => {
-    setModalOpen(!modalOpen);
-    setModalContent({
-      target: 'delete',
-      func: () => diaryDelete(index),
-    });
-  };
-  const handleEdit = () => {
-    setOpenEdit(!openEdit);
-  };
-  const confirmEdit = () => {
-    setModalOpen(!modalOpen);
-    setModalContent({
-      target: 'edit',
-      func: () =>
-        diaryEdit(el, editTitle.current.value, editContent.current.value),
-    });
-    // setOpenEdit(!openEdit);
-    // if (window.confirm('진짜 수정하시겠습니까?')) {
-    //   diaryEdit(el, editTitle.current.value, editContent.current.value);
-    //   setOpenEdit(!openEdit);
-    // } else {
-    //   setOpenEdit(!openEdit);
-    //   return;
-    // }
-  };
+const Diary = ({ el, index, weatherIcon }) => {
   return (
     <li
       className='diary'
@@ -64,49 +12,21 @@ const Diary = ({
       ,inset 0px -30px 150px 15px ${el.color}20`,
       }}
     >
-      <div className='editDelete'>
-        <span onClick={handleEdit}>수정</span>
-        <span onClick={handleDelete}>삭제</span>
-      </div>
       <div className='diaryContent'>
-        {openEdit === true ? (
-          <div className='editDiary'>
-            <div className='editTitleContent'>
-              <input
-                className='editTitle'
-                type='text'
-                ref={editTitle}
-                defaultValue={el.title}
-              />
-              <textarea
-                className='editContent'
-                ref={editContent}
-                defaultValue={el.content}
-              ></textarea>
-            </div>
-            <button className='confirmBtn' onClick={confirmEdit}>
-              수정하기
-            </button>
-          </div>
-        ) : (
-          <div className='titleContent'>
-            <Link to={`/${el.origin_id}`}>
-              <h3 className='title'>
-                {el.title.length > 20
-                  ? `${el.title.slice(0, 20)}...`
-                  : el.title}
-              </h3>
+        <div className='titleContent'>
+          <Link to={`/${el.origin_id}`}>
+            <h3 className='title'>
+              {el.title.length > 20 ? `${el.title.slice(0, 20)}...` : el.title}
+            </h3>
 
-              <p className='content'>
-                {' '}
-                {el.content.length > 20
-                  ? `${el.content.slice(0, 20)}...`
-                  : el.content}
-              </p>
-            </Link>
-          </div>
-        )}
-
+            <p className='content'>
+              {' '}
+              {el.content.length > 20
+                ? `${el.content.slice(0, 20)}...`
+                : el.content}
+            </p>
+          </Link>
+        </div>
         <div className='dateNweatherIcon'>
           <div className='date'>
             {el.createdTime.split('. ')[1]}/{el.createdTime.split('. ')[2]}

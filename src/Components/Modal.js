@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import './Modal.css';
 
 const Modal = ({ modalContent, modalOpen, setModalOpen }) => {
   // const [situation, setSituation] = useState('');
+  const navigate = useNavigate();
   let doing = '';
   if (modalContent.target === 'edit') {
     doing = '수정';
@@ -12,6 +14,7 @@ const Modal = ({ modalContent, modalOpen, setModalOpen }) => {
     if (e.target.className === 'yes') {
       modalContent.func();
       setModalOpen(!modalOpen);
+      navigate('/');
     } else {
       setModalOpen(!modalOpen);
       return;

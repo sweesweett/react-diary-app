@@ -4,6 +4,7 @@ import DiaryList from './Components/DiaryList';
 import WeatherDisplay from './Components/WeatherDisplay';
 import Modal from './Components/Modal';
 import DetailDiary from './Components/DetailDiary';
+import EditDiary from './Pages/EditDiary';
 import uuid from 'react-uuid';
 import React, { useEffect, useState } from 'react';
 import dummy from './Resource/dummy';
@@ -55,7 +56,6 @@ function App() {
     let origin_id = uuid();
     const createdTime = new Date().toLocaleString();
     const icon = weather.icon;
-    console.log(icon);
     localStorage.setItem(
       'diaryList',
       JSON.stringify([
@@ -77,18 +77,19 @@ function App() {
         content,
         color,
         createdTime,
-        icon: weather.icon,
+        icon,
       },
       ...state,
     ]);
-    console.log(state);
+
     navigate('/');
   };
   //다이어리 삭제
   const diaryDelete = (index) => {
-    state.splice(index, 1);
-    localStorage.setItem('diaryList', JSON.stringify([...state]));
-    setState([...state]);
+    let newState = state.filter((el) => el.origin_id !== index);
+    localStorage.setItem('diaryList', JSON.stringify(newState));
+    setState(newState);
+    navigate('/');
   };
   //다이어리 수정
   const diaryEdit = (el, title, content) => {
@@ -96,6 +97,7 @@ function App() {
     el['content'] = content;
     setState([...state]);
     localStorage.setItem('diaryList', JSON.stringify([...state]));
+    navigate('/');
   };
   const weatherIcon = (icon) => {
     //아 스위치로할까.....
@@ -156,9 +158,31 @@ function App() {
             />
           }
         />
-        <Route path='/:id' element={<DetailDiary state={state} />} />
+        <Route
+          path='/:id'
+          element={
+            <DetailDiary
+              state={state}
+              diaryDelete={diaryDelete}
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
+              setModalContent={setModalContent}
+            />
+          }
+        />
         {/* //자세히보기 */}
-        <Route path='/:id' element={<DiaryList />} />
+        <Route
+          path='/:id/edit'
+          element={
+            <EditDiary
+              state={state}
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
+              setModalContent={setModalContent}
+              diaryEdit={diaryEdit}
+            />
+          }
+        />
         {/* //수정 */}
       </Routes>
     </div>
