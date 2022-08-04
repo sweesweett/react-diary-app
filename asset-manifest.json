@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/react-diary-app/static/css/main.86d893da.css",
-    "main.js": "/react-diary-app/static/js/main.ffa894fa.js",
+    "main.css": "/react-diary-app/static/css/main.37aa3125.css",
+    "main.js": "/react-diary-app/static/js/main.c5dedfa8.js",
     "static/media/SeekPng.com_weather-icon-png_1330512.png": "/react-diary-app/static/media/SeekPng.com_weather-icon-png_1330512.7841f15d04e3fdb376bc.png",
     "index.html": "/react-diary-app/index.html",
-    "main.86d893da.css.map": "/react-diary-app/static/css/main.86d893da.css.map",
-    "main.ffa894fa.js.map": "/react-diary-app/static/js/main.ffa894fa.js.map"
+    "main.37aa3125.css.map": "/react-diary-app/static/css/main.37aa3125.css.map",
+    "main.c5dedfa8.js.map": "/react-diary-app/static/js/main.c5dedfa8.js.map"
   },
   "entrypoints": [
-    "static/css/main.86d893da.css",
-    "static/js/main.ffa894fa.js"
+    "static/css/main.37aa3125.css",
+    "static/js/main.c5dedfa8.js"
   ]
 }
