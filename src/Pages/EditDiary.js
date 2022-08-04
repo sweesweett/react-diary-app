@@ -23,35 +23,46 @@ const EditDiary = ({
     });
   };
   const backtoDetail = () => {
-    if (
-      window.confirm(
-        '페이지를 벗어나시겠습니까? 수정하고 있는 내용이 저장되지 않습니다'
-      )
-    ) {
-      navigate(`/${id}`);
-    } else {
-      return;
-    }
+    setModalOpen(!modalOpen);
+    setModalContent({
+      target: `페이지를 벗어나시겠습니까?\n 수정하고 있는 내용이 저장되지 않습니다.`,
+      func: undefined,
+    });
   };
   return (
-    <div className='EditDiary'>
+    <div
+      className='EditDiary'
+      style={{
+        boxShadow: ` 1px 1px 10px ${detail.color}1b,
+  -1px -1px 10px ${detail.color}1b
+  ,inset 0px -30px 150px 15px ${detail.color}20`,
+      }}
+    >
       <button className='material-icons' onClick={backtoDetail}>
         arrow_back
       </button>
+      <label htmlFor='editTitle'>제목</label>
       <input
         type='text'
         ref={editTitle}
         defaultValue={detail.title}
         className='title'
+        id='editTitle'
       />
-      <input type='text' defaultValue={detail.createdTime} disabled />
+      <label htmlFor='editDate'>작성된 날짜</label>
+      <input
+        type='text'
+        id='editDate'
+        className='date'
+        defaultValue={detail.createdTime}
+        disabled
+      />
+      <label htmlFor='editContent'>내용</label>
       <textarea
-        name=''
-        id=''
         cols='30'
-        rows='10'
+        rows='9'
         ref={editContent}
-        as
+        id='editContent'
         defaultValue={detail.content}
         className='content'
       ></textarea>

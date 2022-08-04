@@ -18,3 +18,46 @@
   flex-direction: column;
   align-items: center;
 }
+.EditDiary button:first-child {
+  align-self: flex-start;
+  border: none;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+.EditDiary button:first-child:hover {
+  text-shadow: 0 0 5px white;
+}
+.EditDiary label {
+  align-self: flex-start;
+  margin: 5px;
+}
+
+.EditDiary .title,
+.EditDiary .date {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 5px;
+  width: 100%;
+  border-radius: 5px;
+}
+.EditDiary textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  resize: none;
+  height: 40%;
+}
+.EditDiary button:last-child {
+  margin-top: 10px;
+  /* font-size: 16px; */
+  padding: 10px;
+  font-weight: 700;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  box-shadow: 1px 1px 0px rgba(137, 137, 137, 0.4);
+  cursor: pointer;
+}

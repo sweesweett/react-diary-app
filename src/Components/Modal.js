@@ -5,14 +5,22 @@ const Modal = ({ modalContent, modalOpen, setModalOpen }) => {
   // const [situation, setSituation] = useState('');
   const navigate = useNavigate();
   let doing = '';
+  let btn = '';
   if (modalContent.target === 'edit') {
-    doing = '수정';
+    doing = '이 일기를 수정하시겠습니까?';
+    btn = '수정';
   } else if (modalContent.target === 'delete') {
-    doing = '삭제';
+    doing = '이 일기를 삭제하시겠습니까?';
+    btn = '삭제';
+  } else {
+    doing = modalContent.target;
   }
   const handleYesOrNo = (e) => {
     if (e.target.className === 'yes') {
-      modalContent.func();
+      if (modalContent.func !== undefined) {
+        modalContent.func();
+      }
+
       setModalOpen(!modalOpen);
       navigate('/');
     } else {
@@ -25,13 +33,13 @@ const Modal = ({ modalContent, modalOpen, setModalOpen }) => {
     <div className='Modal'>
       <div className='modalBg'></div>
       <div className='modalContent'>
-        <div className='modalMessage'>이 일기를 {doing}하시겠습니까?</div>
+        <div className='modalMessage'>{doing}</div>
         <div className='btns'>
           <button onClick={handleYesOrNo} className='yes'>
-            {doing}할게요!
+            {btn}할게요!
           </button>
           <button onClick={handleYesOrNo} className='no'>
-            {doing}하지 않을래요
+            {btn}하지 않을래요
           </button>
         </div>
       </div>
