@@ -3,20 +3,103 @@ import DiaryToWrite from './Components/DiaryToWrite';
 import DiaryList from './Components/DiaryList';
 import WeatherDisplay from './Components/WeatherDisplay';
 import Modal from './Components/Modal';
-import DetailDiary from './Components/DetailDiary';
+import DetailDiary from './Pages/DetailDiary';
 import EditDiary from './Pages/EditDiary';
 import uuid from 'react-uuid';
 import React, { useEffect, useState, useReducer } from 'react';
 import dummy from './Resource/dummy';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+let initialState = JSON.parse(localStorage.getItem('diaryList'));
+if (initialState === null) {
+  initialState = [];
+}
+const weatherIcon = (icon) => {
+  //아 스위치로할까.....
+  const style = {};
+  // switch (icon) {
+  //   case '04d':
+  //   case '04n':
+  //   case '03d':
+  //   case '03n':
+  //     style.backgroundPosition = '0 0';
+  //     break;
+  //   case '09d':
+  //   case '09n':
+  //     style.backgroundPosition = '-672px -96px';
+  //     break;
 
+  //   case '11d':
+  //   case '11n':
+  //     style.backgroundPosition = '-96px -288px';
+  //     break;
+  //   case '13d':
+  //   case '13n':
+  //     style.backgroundPosition = '0 -384px';
+  //     break;
+  //   case '50d':
+  //   case '50n':
+  //     style.backgroundPosition = '0 -192px';
+  //     break;
+  //   case '01d':
+  //     style.backgroundPosition = '-96px 0';
+  //     break;
+  //   case '01n':
+  //     style.backgroundPosition = '-192px 0';
+  //     break;
+  //   case '02d':
+  //     style.backgroundPosition = '-288px 0';
+  //     break;
+  //   case '02n':
+  //     style.backgroundPosition = '-384px 0';
+  //     break;
+  //   case '10d':
+  //     style.backgroundPosition = '-192px -96px';
+  //     break;
+  //   case '10n':
+  //     style.backgroundPosition = '-288px -96px';
+  //     break;
+  //   default:
+  //     style.backgroundPosition = '-384px -384px';
+  // }
+  if (icon === '04d' || icon === '04n' || icon === '03d' || icon === '03n') {
+    style.backgroundPosition = '0 0';
+  } else if (icon === '09d' || icon === '09n') {
+    style.backgroundPosition = '-672px -96px';
+  } else if (icon === '11d' || icon === '11n') {
+    style.backgroundPosition = '-96px -288px';
+  } else if (icon === '13d' || icon === '13n') {
+    style.backgroundPosition = '0 -384px';
+  } else if (icon === '50d' || icon === '50n') {
+    style.backgroundPosition = '0 -192px';
+  } else if (icon === '01d') {
+    style.backgroundPosition = '-96px 0';
+  } else if (icon === '01n') {
+    style.backgroundPosition = '-192px 0';
+  } else if (icon === '02d') {
+    style.backgroundPosition = '-288px 0';
+  } else if (icon === '02n') {
+    style.backgroundPosition = '-384px 0';
+  } else if (icon === '10d') {
+    style.backgroundPosition = '-192px -96px';
+  } else if (icon === '10n') {
+    style.backgroundPosition = '-288px -96px';
+  } else {
+    style.backgroundPosition = '-384px -384px';
+  }
+  return style;
+};
 const reducer = (state, action) => {
+  let newData = [];
   switch (action.type) {
     case 'CREATE': {
-      return [...action.data, ...state];
+      newData = [...action.data, ...state];
+      localStorage.setItem('diaryList', JSON.stringify(newData));
+      return newData;
     }
     case 'REMOVE': {
-      return state.filter((el) => el.id !== action.targetId);
+      newData = state.filter((el) => el.id !== action.targetId);
+      localStorage.setItem('diaryList', JSON.stringify(newData));
+      return newData;
     }
     case 'EDIT': {
       return state.map((el) =>
@@ -30,14 +113,10 @@ const reducer = (state, action) => {
 export const DataContext = React.createContext();
 export const DispatchContext = React.createContext();
 function App() {
-  let initialState = JSON.parse(localStorage.getItem('diaryList'));
-  if (initialState === null) {
-    initialState = [];
-  }
   const [data, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
   const [weather, setWeather] = useState({});
-  const [state, setState] = useState(initialState);
+  // const [state, setState] = useState(initialState);
   const [modalContent, setModalContent] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -77,22 +156,9 @@ function App() {
     let origin_id = uuid();
     const createdTime = new Date().toLocaleString();
     const icon = weather.icon;
-    localStorage.setItem(
-      'diaryList',
-      JSON.stringify([
-        {
-          origin_id,
-          title,
-          content,
-          color,
-          createdTime,
-          icon,
-        },
-        ...state,
-      ])
-    );
-    setState([
-      {
+    dispatch({
+      type: 'CREATE',
+      data: {
         origin_id,
         title,
         content,
@@ -100,104 +166,31 @@ function App() {
         createdTime,
         icon,
       },
-      ...state,
-    ]);
-
+    });
     navigate('/');
   };
   //다이어리 삭제
-  const diaryDelete = (index) => {
-    let newState = state.filter((el) => el.origin_id !== index);
-    localStorage.setItem('diaryList', JSON.stringify(newState));
-    setState(newState);
+  const diaryDelete = (targetId) => {
+    dispatch({ type: 'REMOVE', targetId });
     navigate('/');
   };
   //다이어리 수정
   const diaryEdit = (el, title, content) => {
     el['title'] = title;
     el['content'] = content;
-    setState([...state]);
-    localStorage.setItem('diaryList', JSON.stringify([...state]));
+    dispatch({
+      type: 'EDIT',
+      data: el,
+    });
+
+    // setState([...state]);
+    // localStorage.setItem('diaryList', JSON.stringify([...state]));
     navigate('/');
   };
-  const weatherIcon = (icon) => {
-    //아 스위치로할까.....
-    const style = {};
-    switch (icon) {
-      case '04d':
-      case '04n':
-      case '03d':
-      case '03n':
-        style.backgroundPosition = '0 0';
-        break;
-      case '09d':
-      case '09n':
-        style.backgroundPosition = '-672px -96px';
-        break;
 
-      case '11d':
-      case '11n':
-        style.backgroundPosition = '-96px -288px';
-        break;
-      case '13d':
-      case '13n':
-        style.backgroundPosition = '0 -384px';
-        break;
-      case '50d':
-      case '50n':
-        style.backgroundPosition = '0 -192px';
-        break;
-      case '01d':
-        style.backgroundPosition = '-96px 0';
-        break;
-      case '01n':
-        style.backgroundPosition = '-192px 0';
-        break;
-      case '02d':
-        style.backgroundPosition = '-288px 0';
-        break;
-      case '02n':
-        style.backgroundPosition = '-384px 0';
-        break;
-      case '10d':
-        style.backgroundPosition = '-192px -96px';
-        break;
-      case '10n':
-        style.backgroundPosition = '-288px -96px';
-        break;
-      default:
-        style.backgroundPosition = '-384px -384px';
-    }
-    // if (icon === '04d' || icon === '04n' || icon === '03d' || icon === '03n') {
-    //   style.backgroundPosition = '0 0';
-    // } else if (icon === '09d' || icon === '09n') {
-    //   style.backgroundPosition = '-672px -96px';
-    // } else if (icon === '11d' || icon === '11n') {
-    //   style.backgroundPosition = '-96px -288px';
-    // } else if (icon === '13d' || icon === '13n') {
-    //   style.backgroundPosition = '0 -384px';
-    // } else if (icon === '50d' || icon === '50n') {
-    //   style.backgroundPosition = '0 -192px';
-    // } else if (icon === '01d') {
-    //   style.backgroundPosition = '-96px 0';
-    // } else if (icon === '01n') {
-    //   style.backgroundPosition = '-192px 0';
-    // } else if (icon === '02d') {
-    //   style.backgroundPosition = '-288px 0';
-    // } else if (icon === '02n') {
-    //   style.backgroundPosition = '-384px 0';
-    // } else if (icon === '10d') {
-    //   style.backgroundPosition = '-192px -96px';
-    // } else if (icon === '10n') {
-    //   style.backgroundPosition = '-288px -96px';
-    // } else {
-    //   style.backgroundPosition = '-384px -384px';
-    // }
-    return style;
-  };
   return (
-    <DataContext.Provider data={data}>
-      <DispatchContext.Provider diaryEdit={diaryEdit} diaryDelete={diaryDelete}>
+    <DataContext.Provider value={data}>
+      <DispatchContext.Provider value={{ diaryDelete, diaryEdit }}>
         <div className='App'>
           {modalOpen && (
             <Modal
@@ -210,27 +203,13 @@ function App() {
             색깔 일기장
           </h2>
           <WeatherDisplay weather={weather} weatherIcon={weatherIcon} />
-          <DiaryToWrite diarySubmit={diarySubmit} />
+          <DiaryToWrite />
           <Routes>
-            <Route
-              path='/'
-              element={
-                <DiaryList
-                  state={state}
-                  diaryDelete={diaryDelete}
-                  diaryEdit={diaryEdit}
-                  weatherIcon={weatherIcon}
-                  modalOpen={modalOpen}
-                  setModalOpen={setModalOpen}
-                  setModalContent={setModalContent}
-                />
-              }
-            />
+            <Route path='/' element={<DiaryList weatherIcon={weatherIcon} />} />
             <Route
               path='/:id'
               element={
                 <DetailDiary
-                  state={state}
                   diaryDelete={diaryDelete}
                   modalOpen={modalOpen}
                   setModalOpen={setModalOpen}
@@ -243,11 +222,8 @@ function App() {
               path='/:id/edit'
               element={
                 <EditDiary
-                  state={state}
-                  modalOpen={modalOpen}
                   setModalOpen={setModalOpen}
                   setModalContent={setModalContent}
-                  diaryEdit={diaryEdit}
                 />
               }
             />

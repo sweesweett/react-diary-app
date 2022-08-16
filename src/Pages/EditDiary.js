@@ -1,14 +1,11 @@
-import { useRef } from 'react';
+import { DataContext, DispatchContext } from '../App';
+import { useRef, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './EditDiary.css';
 
-const EditDiary = ({
-  state,
-  diaryEdit,
-  modalOpen,
-  setModalOpen,
-  setModalContent,
-}) => {
+const EditDiary = ({ modalOpen, setModalOpen, setModalContent }) => {
+  let state = useContext(DataContext);
+  let { diaryEdit } = useContext(DispatchContext);
   const editTitle = useRef();
   const editContent = useRef();
   const { id } = useParams();

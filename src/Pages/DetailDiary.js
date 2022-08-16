@@ -1,14 +1,11 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState, useContext } from 'react';
+import { DataContext, DispatchContext } from '../App';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import './DetailDiary.css';
 
-const DetailDiary = ({
-  state,
-  diaryDelete,
-  modalOpen,
-  setModalOpen,
-  setModalContent,
-}) => {
+const DetailDiary = ({ modalOpen, setModalOpen, setModalContent }) => {
+  let state = useContext(DataContext);
+  let { diaryDelete } = useContext(DispatchContext);
   const { id } = useParams();
   const [moreBtnOpen, setmoreBtnOpen] = useState(false);
   const detail = state.filter((el) => el.origin_id === id)[0];
