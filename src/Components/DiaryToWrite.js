@@ -1,7 +1,9 @@
-import { useRef } from 'react';
-
+import { useRef, useContext } from 'react';
+import { DataContext, DispatchContext } from '../App';
 import './DiaryToWrite.css';
-const DiaryToWrite = ({ diarySubmit }) => {
+const DiaryToWrite = () => {
+  let state = useContext(DataContext);
+  let { diarySubmit } = useContext(DispatchContext);
   const title = useRef();
   const content = useRef();
   const color = useRef();

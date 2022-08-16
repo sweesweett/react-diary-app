@@ -92,7 +92,7 @@ const reducer = (state, action) => {
   let newData = [];
   switch (action.type) {
     case 'CREATE': {
-      newData = [...action.data, ...state];
+      newData = [action.data, ...state];
       localStorage.setItem('diaryList', JSON.stringify(newData));
       return newData;
     }
@@ -190,7 +190,7 @@ function App() {
 
   return (
     <DataContext.Provider value={data}>
-      <DispatchContext.Provider value={{ diaryDelete, diaryEdit }}>
+      <DispatchContext.Provider value={{ diaryDelete, diaryEdit, diarySubmit }}>
         <div className='App'>
           {modalOpen && (
             <Modal
@@ -200,7 +200,7 @@ function App() {
             />
           )}
           <h2 className='title' onClick={() => navigate('/')}>
-            색깔 일기장
+            Colorful Diary
           </h2>
           <WeatherDisplay weather={weather} weatherIcon={weatherIcon} />
           <DiaryToWrite />

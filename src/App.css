@@ -24,6 +24,15 @@ body {
 li {
   list-style: none;
 }
+input,
+textarea {
+  outline: none;
+  border-radius: 5px;
+}
+input:focus,
+textarea:focus {
+  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.7);
+}
 .App {
   width: 600px;
   margin: 50px auto 10px;
