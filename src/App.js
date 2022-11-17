@@ -97,14 +97,16 @@ const reducer = (state, action) => {
       return newData;
     }
     case 'REMOVE': {
-      newData = state.filter((el) => el.id !== action.targetId);
+      newData = state.filter((el) => el.origin_id !== action.targetId);
       localStorage.setItem('diaryList', JSON.stringify(newData));
       return newData;
     }
     case 'EDIT': {
-      return state.map((el) =>
-        el.id === action.data.id ? { ...action.data } : el
+      newData = state.map((el) =>
+        el.origin_id === action.data.id ? { ...action.data } : el
       );
+      localStorage.setItem('diaryList', JSON.stringify(newData));
+      return newData;
     }
     default:
       return state;
@@ -132,7 +134,7 @@ function App() {
         temp_min: Math.round(data.main.temp_min - 273),
         temp_max: Math.round(data.main.temp_max - 273),
         wind: data.wind.speed,
-        icon: data.weather[0].icon,
+        icon: data.weather[0].icon
       }))
       .then((obj) => {
         console.log(obj);
@@ -147,7 +149,7 @@ function App() {
           temp_min: Math.round(dummy.main.temp_min - 273),
           temp_max: Math.round(dummy.main.temp_max - 273),
           wind: dummy.wind.speed,
-          icon: dummy.weather[0].icon,
+          icon: dummy.weather[0].icon
         })
       );
   }, []);
@@ -164,8 +166,8 @@ function App() {
         content,
         color,
         createdTime,
-        icon,
-      },
+        icon
+      }
     });
     navigate('/');
   };
@@ -180,7 +182,7 @@ function App() {
     el['content'] = content;
     dispatch({
       type: 'EDIT',
-      data: el,
+      data: el
     });
 
     // setState([...state]);
@@ -199,13 +201,22 @@ function App() {
               setModalOpen={setModalOpen}
             />
           )}
-          <h2 className='title' onClick={() => navigate('/')}>
+          <h2
+            className='title'
+            onClick={() => navigate('/')}
+          >
             Colorful Diary
           </h2>
-          <WeatherDisplay weather={weather} weatherIcon={weatherIcon} />
+          <WeatherDisplay
+            weather={weather}
+            weatherIcon={weatherIcon}
+          />
           <DiaryToWrite />
           <Routes>
-            <Route path='/' element={<DiaryList weatherIcon={weatherIcon} />} />
+            <Route
+              path='/'
+              element={<DiaryList weatherIcon={weatherIcon} />}
+            />
             <Route
               path='/:id'
               element={

@@ -14,10 +14,11 @@ const DetailDiary = ({ modalOpen, setModalOpen, setModalContent }) => {
     setmoreBtnOpen(!moreBtnOpen);
   };
   const handleDelete = () => {
+    console.log(id);
     setModalOpen(!modalOpen);
     setModalContent({
       target: 'delete',
-      func: () => diaryDelete(id),
+      func: () => diaryDelete(id)
     });
     setmoreBtnOpen(false);
   };
@@ -27,15 +28,21 @@ const DetailDiary = ({ modalOpen, setModalOpen, setModalContent }) => {
       style={{
         boxShadow: ` 1px 1px 10px ${detail.color}1b,
     -1px -1px 10px ${detail.color}1b
-    ,inset 0px -30px 150px 15px ${detail.color}20`,
+    ,inset 0px -30px 150px 15px ${detail.color}20`
       }}
     >
       <div className='btns'>
-        <button className='material-icons' onClick={() => navigate('/')}>
+        <button
+          className='material-icons'
+          onClick={() => navigate('/')}
+        >
           arrow_back
         </button>
 
-        <button className='material-icons' onClick={handleBtnOpen}>
+        <button
+          className='material-icons'
+          onClick={handleBtnOpen}
+        >
           more_vert
         </button>
         <ul
@@ -45,7 +52,10 @@ const DetailDiary = ({ modalOpen, setModalOpen, setModalContent }) => {
           <li className='edit'>
             <Link to={`/${id}/edit`}>수정</Link>
           </li>
-          <li className='delete' onClick={handleDelete}>
+          <li
+            className='delete'
+            onClick={handleDelete}
+          >
             삭제
           </li>
         </ul>
